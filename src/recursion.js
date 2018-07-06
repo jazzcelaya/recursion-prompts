@@ -127,21 +127,14 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-
-var reverse = function(string) {
-  var reversed = "";
-  if(reversed.length === string.length){
-    return reversed;
+  // base case
+  if (string.length ===1 || string.length === 0) {
+    return true;
   }
-  reversed = reversed + string[0];
-  return reverse(string.substring(1))+ reversed.charAt(0)
-};
-
-if ( string === reverse(string) ){
-  return true;
-} else {
-  return false;
-}
+  //string.slice --- If stop is omitted: extracts characters to the end of the string
+  if (string[0].toLowerCase() !==string.slice(-1).toLowerCase()){        return false;
+  }
+  return palindrome(string.substring(1, string.length - 1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -155,12 +148,20 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
-};
+  if (y === 0){
+    return 0;
+  }
+  return x + multiply(x,(Math.abs(y)-1));
+}
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
 var divide = function(x, y) {
-};
+  if (x === 0 ){
+    return 0;
+  }
+  return 1 + divide(x-y,y)
+}
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
@@ -175,7 +176,16 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1.length === 0){
+    return true;
+  }
+  if (str1[0] !== str2[0]){
+    return false;
+  }
+  return compareStr(str1.substring(1),str2.substring(1))
 };
+
+//compareStr("oso","ose")
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
