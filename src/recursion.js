@@ -151,8 +151,13 @@ var multiply = function(x, y) {
   if (y === 0){
     return 0;
   }
-  return x + multiply(x,(Math.abs(y)-1));
+  if (x > 0 && y > 0 ){
+  return x + multiply(x,y-1);
+  } else if ( x < 0 && y < 0){
+    return x + multiply(x,y+1)
+  }
 }
+
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
@@ -176,7 +181,7 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
-  if (str1.length === 0){
+  if (str1.length === 0 && str2.length === 0){
     return true;
   }
   if (str1[0] !== str2[0]){
